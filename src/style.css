@@ -1,5 +1,7 @@
 .container {
     margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .project {
@@ -8,7 +10,6 @@
     border-radius: 5px;
     margin-top: 16px;
     padding: 20px;
-    height: 410px;
     max-height: 600px;
     background-color: #fff;
 }
@@ -18,24 +19,51 @@
     flex-wrap: wrap;
     flex-direction: row;
     font-size: 20px;
-    padding: 10px;
 }
 
 h3 {
     color:rgb(53, 53, 141);
     text-align: left;
+    margin-left: 10px;
+}
+
+.imgNdegrees {
+    margin-bottom: 20px;
 }
 
 img {
     position: relative;
-    max-width: 20px;
+    max-width: 50px;
     max-height: 100px;
-    bottom: 12px;
+    bottom:5px;
 }
 
 .degrees {
-    text-align: right;
-    
+    text-align: left;
+    color:rgb(53, 53, 141);
+    text-align: left;
+    font-size: 28px;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.units {
+    margin-left: 10px;
+    text-align: left;
+    color:rgb(53, 53, 141);
+    text-align: left;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+a#celsius, a#fahrenheit {
+    color:rgb(97, 97, 255);
+    transition: 200ms ease-in-out;
+}
+
+#celsius:hover, #fahrenheit:hover {
+ text-decoration: none;
+ color:rgb(71, 71, 185);
 }
 
 .info {
@@ -50,6 +78,7 @@ img {
     font-size: 18px;
     background-color: rgb(250, 249, 253);
     text-transform: capitalize;
+    margin-top: 20px;
 }
 
 .mainForm {
@@ -72,6 +101,11 @@ img {
     border-radius: 5px;
     border: 1px rgb(17, 17, 53) solid;
     font-size: 20px;
+    transition: 200ms ease-in-out;
+}
+
+.formButton:hover {
+    background-color: rgb(202, 211, 253);
 }
 
 .forecast {

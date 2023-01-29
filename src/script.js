@@ -25,14 +25,16 @@ function displayTemperature(response) {
     let humidity = document.querySelector(`.humidity`)
     let wind = document.querySelector(`.wind`)
     let iconElement = document.querySelector("#icon")
-    temp.innerHTML = Math.round(response.data.main.temp) + `°`
+    
+    celciusTemp = response.data.main.temp
+
+    temp.innerHTML = Math.round(celciusTemp) + `°`
     cityElement.innerHTML = response.data.name
     weather.innerHTML = response.data.weather[0].description
     humidity.innerHTML = response.data.main.humidity + `%`
     wind.innerHTML = Math.round(response.data.wind.speed) + ` km/h`
     iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`) 
     iconElement.setAttribute("alt", response.data.weather[0].description)
-    console.log(response)
 }
 
 function searchCity(city) {
@@ -48,7 +50,28 @@ function handleSubmit(event) {
     searchCity(formInputElement.value)
 }
 
+function displayFahrenheit(event) {
+    event.preventDefault()
+    let tempElement = document.querySelector(".degrees")
+    let fahrenheitTemp = (celciusTemp * 9) / 5 + 32
+    tempElement.innerHTML = Math.round(fahrenheitTemp)
+}
+
+function displayCelsius(event) {
+    event.preventDefault()
+    let tempElement = document.querySelector(".degrees")
+    tempElement.innerHTML = Math.round(celciusTemp) + `°`
+}
+
 //
+
+let celciusTemp = null
 
 let form = document.querySelector(".mainForm")
 form.addEventListener("submit", handleSubmit)
+
+let fahrenheit = document.querySelector("#fahrenheit")
+fahrenheit.addEventListener("click", displayFahrenheit)
+
+let celsius = document.querySelector("#celsius")
+celsius.addEventListener("click", displayCelsius)
