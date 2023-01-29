@@ -1,0 +1,87 @@
+.container {
+    margin: 10px;
+}
+
+.project {
+    border: 1px rgb(22, 22, 68) solid;
+    max-width: 420px;
+    border-radius: 5px;
+    margin-top: 16px;
+    padding: 20px;
+    height: 380px;
+    max-height: 600px;
+    background-color: #fff;
+}
+
+h3 {
+    color:rgb(53, 53, 141);
+}
+
+.info {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    border: 1px rgb(22, 22, 68) solid;
+    max-width: 400px;
+    border-radius: 5px;
+    padding: 15px 0px;
+    line-height: 30px;
+    font-size: 18px;
+    background-color: rgb(250, 249, 253);
+}
+
+.mainForm {
+    margin: 12px 0px;
+}
+
+.formInput {
+    width: 303px;
+    padding: 6px 3px;
+    border-radius: 3px;
+    border: 1px rgb(17, 17, 53) solid;
+    background-color: #fff;
+    font-size: 20px;
+}
+
+.formButton {
+    padding: 6px 3px;
+    width: 70px;
+    background-color: rgb(233, 235, 255);
+    border-radius: 5px;
+    border: 1px rgb(17, 17, 53) solid;
+    font-size: 20px;
+}
+
+.forecast {
+    margin: 15px 0px;
+    border: 1px rgb(22, 22, 68) solid;
+    padding: 7px 7px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    border-radius: 5px;
+    background-color: rgb(233, 235, 255);
+}
+
+.day1 {
+    border: 1px rgb(22, 22, 68) solid;
+    padding: 30px 0px;
+    border-radius: 2px;
+    background-color: #fff;
+}
+
+.day2 {
+    border: 1px rgb(22, 22, 68) solid;
+    padding: 30px 0px;
+    margin: 0px 0px 0px 5px;
+    border-radius: 2px;
+    background-color: #fff;
+}
+
+.day3 {
+    border: 1px rgb(22, 22, 68) solid;
+    padding: 30px 0px;
+    margin: 0px 0px 0px 5px;
+    border-radius: 2px;
+    background-color: #fff;
+}
