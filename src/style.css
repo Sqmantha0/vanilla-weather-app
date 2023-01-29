@@ -8,7 +8,7 @@
     border-radius: 5px;
     margin-top: 16px;
     padding: 20px;
-    height: 380px;
+    height: 410px;
     max-height: 600px;
     background-color: #fff;
 }
@@ -17,11 +17,20 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    font-size: 20px;
+    padding: 10px;
 }
 
 h3 {
     color:rgb(53, 53, 141);
     text-align: left;
+}
+
+img {
+    position: relative;
+    max-width: 20px;
+    max-height: 100px;
+    bottom: 12px;
 }
 
 .degrees {

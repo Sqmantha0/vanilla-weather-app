@@ -13,7 +13,10 @@
     <div class="container">
     <h1>Weather App Vanilla</h1>
     <div class="project">
-      <span class="cityInfo"><h3 class="col-6 cityName">City Name</h3> <h3 class="col-6 degrees">°C</h3></span>
+      <span class="cityInfo">
+        <h3 class="col-7 cityName">City Name</h3>
+        <img src="" class="col-3" id="icon" alt=""/>
+        <h3 class="col-2 degrees">°C</h3></span>
       <div class="box-1 info"> 
         <div class="col-8 time">Time</div>
         <span class="col-4 humidity">Humidity %</span>
@@ -22,7 +25,7 @@
       </div>
       <span></span>
       <form class="mainForm">
-        <input class="formInput" type="text" placeholder="Enter a City">
+        <input class="formInput" type="text" autocomplete="off" placeholder="Enter a City">
         <input class="formButton" type="submit" value="Find">
       </form>
       <div class="box-2 forecast">

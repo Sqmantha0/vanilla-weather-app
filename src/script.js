@@ -24,22 +24,31 @@ function displayTemperature(response) {
     let weather = document.querySelector(`.weather`)
     let humidity = document.querySelector(`.humidity`)
     let wind = document.querySelector(`.wind`)
+    let iconElement = document.querySelector("#icon")
     temp.innerHTML = Math.round(response.data.main.temp) + `°`
     cityElement.innerHTML = response.data.name
     weather.innerHTML = response.data.weather[0].description
     humidity.innerHTML = response.data.main.humidity + `%`
     wind.innerHTML = Math.round(response.data.wind.speed) + ` km/h`
+    iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`) 
+    iconElement.setAttribute("alt", response.data.weather[0].description)
     console.log(response)
 }
 
-let apiKey = "aa22a14fd56b104013633441c49c48ee";
-let city = `Kyiv`
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-
-axios.get(apiUrl).then(displayTemperature);
-
-function displayInfo() {
-    let temp = document.querySelector(`.degrees`)
-    tempElement.innerHTML = response.data.main.temp
-    console.log(temp)
+function searchCity(city) {
+    let apiKey = "aa22a14fd56b104013633441c49c48ee";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    
+    axios.get(apiUrl).then(displayTemperature);
 }
+
+function handleSubmit(event) {
+    event.preventDefault()
+    let formInputElement = document.querySelector(".formInput")
+    searchCity(formInputElement.value)
+}
+
+//
+
+let form = document.querySelector(".mainForm")
+form.addEventListener("submit", handleSubmit)
