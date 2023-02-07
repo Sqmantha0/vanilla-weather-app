@@ -19,28 +19,31 @@ dateNtime.innerHTML = `${day} ${hour}:${minutes}`;
 //
 
 function displayForecast(response) {
+    let forecast = response.data
+    console.log(forecast)
+
     let forecastElement = document.querySelector(`.forecast`)
 
     let forecastHTML = ``
-    let days = ["Thu", "Fri", "Sat"]
-    days.forEach(function(day) {
+    days.forEach(function () {
         forecastHTML = forecastHTML + `
         <div class="col day1">
-        <span class="forDay">${day}<div>
-        <img src="" class="" id="foricon1" alt=""/></div>
-        <div id="forTemp">18</div></span>
+        <span class="forDay">${response.data.temp}<div>
+        <img src="=" class="" id="foricon1" alt=""/></div>
+        <div id="forTemp"></div></span>
         </div>`
         
         forecastElement.innerHTML = forecastHTML
     })
 }
 
-function getForecast(coords) { 
-    console.log(coords) 
+function getForecast(response) {
+    console.log()
     
-    let apiKey = "3dce9b1c66837262a25b3f448d354a76";
+    
+    let apiKey = `0bfb047178a74d99a6a6644374e89635`
     let apiUrl = 
-    `https://pro.openweathermap.org/data/2.5/forecast/hourly?lat=${coords.lat}&lon=${coords.lon}&appid=${apiKey}&units=metric`
+    `https://api.weatherbit.io/v2.0/forecast/daily?lat=${response.lat}&lon=${response.lon}&key=${apiKey}&days=7`
     console.log(apiUrl)
     axios.get(apiUrl).then(displayForecast)
 }
@@ -62,8 +65,6 @@ function displayTemperature(response) {
     wind.innerHTML = Math.round(response.data.wind.speed) + ` km/h`
     iconElement1.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`) 
     iconElement1.setAttribute("alt", response.data.weather[0].description)
-
-    console.log(response)
 
     getForecast(response.data.coord)
 }
@@ -108,3 +109,10 @@ let celsius = document.querySelector("#celsius")
 celsius.addEventListener("click", displayCelsius)
 
 searchCity(`Lisbon`)
+
+
+
+
+
+// https://api.weatherapi.com/v1/forecast.json/q=London
+
