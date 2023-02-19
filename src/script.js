@@ -18,37 +18,62 @@ dateNtime.innerHTML = `${day} ${hour}:${minutes}`;
 
 //
 
+function formatDay(timestamp) {
+    let date = new Date(timestamp * 1000)
+    let day = date.getDay()
+    let days = ["Thu","Fri","Sat","Sun","Mon","Tue","Wed",]
+
+    return days[day]
+}
+
 function displayForecast(response) {
-    let forecast = response.data
-    console.log(forecast)
+    let forecast = response.data.daily
 
     let forecastElement = document.querySelector(`.forecast`)
 
-    let forecastHTML = ``
-    days.forEach(function () {
-        forecastHTML = forecastHTML + `
-        <div class="col day1">
-        <span class="forDay">${response.data.temp}<div>
-        <img src="=" class="" id="foricon1" alt=""/></div>
-        <div id="forTemp"></div></span>
-        </div>`
-        
-        forecastElement.innerHTML = forecastHTML
-    })
+    forecast.shift()
+    forecast.shift()
+    forecast.shift()
+    forecast.shift()
+
+    let forecastHTML = `<div class="row">`
+    let days = ["Thu", "Fri", "Sat"] 
+    forecast.forEach(function (forecastDay) {
+        forecastHTML = 
+         forecastHTML + `
+         <div class="col forecastAll">
+          <div class="col days">
+            <div class="date">${formatDay(forecastDay.time)}</div>
+            <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${forecastDay.condition.icon}.png"
+            alt=""
+            width="42"
+            />
+            <div class="row temps">
+             <span class="col temp-max">${Math.round(forecastDay.temperature.maximum)}°</span>
+             <span class="col temp-min">${Math.round(forecastDay.temperature.minimum)}°</span>
+          </div>
+         </div>
+        </div>
+        `;
+    })  
+    
+
+    forecastElement.innerHTML = forecastHTML
+
 }
 
 function getForecast(response) {
-    console.log()
-    
-    
-    let apiKey = `0bfb047178a74d99a6a6644374e89635`
+    let city = document.querySelector(`.formInput`)
+    city.innerHTML = response.city 
+    let cityName = response.data.city
+    let apiKey = `bdb7a420b2at3ebf15683167248o3512`
     let apiUrl = 
-    `https://api.weatherbit.io/v2.0/forecast/daily?lat=${response.lat}&lon=${response.lon}&key=${apiKey}&days=7`
-    console.log(apiUrl)
+    `https://api.shecodes.io/weather/v1/forecast?query=${cityName}&key=${apiKey}&units=metric`
     axios.get(apiUrl).then(displayForecast)
 }
 
 function displayTemperature(response) {
+    
     let temp = document.querySelector(`.degrees`)
     let cityElement = document.querySelector(`.cityName`)
     let weather = document.querySelector(`.weather`)
@@ -56,22 +81,23 @@ function displayTemperature(response) {
     let wind = document.querySelector(`.wind`)
     let iconElement1 = document.querySelector("#icon")
     
-    celciusTemp = response.data.main.temp
+    let celciusTemp = response.data.temperature.current
 
     temp.innerHTML = Math.round(celciusTemp) + `°`
-    cityElement.innerHTML = response.data.name
-    weather.innerHTML = response.data.weather[0].description
-    humidity.innerHTML = response.data.main.humidity + `%`
+    cityElement.innerHTML = response.data.city
+    weather.innerHTML = response.data.condition.description
+    humidity.innerHTML = response.data.temperature.humidity + `%`
     wind.innerHTML = Math.round(response.data.wind.speed) + ` km/h`
-    iconElement1.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`) 
-    iconElement1.setAttribute("alt", response.data.weather[0].description)
+    iconElement1.setAttribute("src", `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`) 
+    iconElement1.setAttribute("alt", response.data.condition.description)
 
-    getForecast(response.data.coord)
+    getForecast(response)
 }
 
-function searchCity(city) {
-    let apiKey = "aa22a14fd56b104013633441c49c48ee";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+function searchCity(response) {
+    let city = response
+    let apiKey = `bdb7a420b2at3ebf15683167248o3512`;
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
     
     axios.get(apiUrl).then(displayTemperature);
 }
@@ -97,7 +123,6 @@ function displayCelsius(event) {
 
 //
 
-let celciusTemp = null
 
 let form = document.querySelector(".mainForm")
 form.addEventListener("submit", handleSubmit)
@@ -108,7 +133,8 @@ fahrenheit.addEventListener("click", displayFahrenheit)
 let celsius = document.querySelector("#celsius")
 celsius.addEventListener("click", displayCelsius)
 
-searchCity(`Lisbon`)
+
+searchCity(city=`Lisbon`)
 
 
 
@@ -116,3 +142,8 @@ searchCity(`Lisbon`)
 
 // https://api.weatherapi.com/v1/forecast.json/q=London
 
+// ${response.data.daily.temperature}
+
+// `<div class="col day1"> <span class="forDay"><div> <img src="=" class="" id="foricon1" alt=""/></div> <div id="forTemp"></div></span> </div>`
+
+// Math.round{forecast[0].temperature.maximum}°

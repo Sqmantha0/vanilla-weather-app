@@ -118,7 +118,7 @@ a#celsius, a#fahrenheit {
 .forecast {
     margin: 15px 0px;
     border: 1px rgb(22, 22, 68) solid;
-    padding: 7px 7px;
+    padding: 10px 2px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -127,12 +127,16 @@ a#celsius, a#fahrenheit {
     text-align: center;
 }
 
-.day1 {
+.days {
     border: 1px rgb(22, 22, 68) solid;
-    padding: 30px 0px;
+    padding: 10px 50px;
     border-radius: 2px;
     background-color: #fff;
-    margin: 2px
+    margin-left: 17px;
+}
+
+.temp-min {
+    text-align: right;
 }
 
 .link {
